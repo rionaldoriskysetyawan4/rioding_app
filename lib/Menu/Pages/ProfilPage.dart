@@ -6,16 +6,11 @@ class ProfilPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Halo"
-        ),
+        backgroundColor: Color(0xFF8E8E8E),
       ),
-      body:  Container(
-        child: Column(
-          children: [
-
-          ],
-        ),
+      body: Container(
+        color: Color(0xFF8E8E8E),
+        child: Text("Ini Profil Page"),
       ),
     );
   }

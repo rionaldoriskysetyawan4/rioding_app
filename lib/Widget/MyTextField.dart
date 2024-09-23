@@ -8,8 +8,9 @@ class MyTextField extends StatelessWidget {
   final double Width;
   final double Height;
   final bool? isObsecured;
+  final TextEditingController controller;
 
-  const MyTextField({super.key, required this.Text, required this.Radius, this.colormu, required this.Width, required this.Height, this.isObsecured,});
+  const MyTextField({super.key, required this.Text, required this.Radius, this.colormu, required this.Width, required this.Height, this.isObsecured, required this.controller,});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class MyTextField extends StatelessWidget {
           padding: EdgeInsets.only(left: 10, right: 10),
           child:
           TextField(
+            controller: controller,
             obscureText: isObsecured ?? false,
             textAlign: TextAlign.left,
             decoration: InputDecoration(
