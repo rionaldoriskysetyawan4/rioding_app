@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rioding_app/Menu/Dashboard_navdrawer.dart';
+import 'package:rioding_app/Menu/Dashboard_page.dart';
 import 'package:rioding_app/Menu/Pages/LogInPage.dart';
 
 
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
             page: () => Loginpage(),),
         GetPage(
             name: '/Dashboard',
-            page: () => Loginpage(),)
+            page: () => DashboardPage(),)
       ],
     );
   }
