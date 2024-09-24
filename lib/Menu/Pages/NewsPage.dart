@@ -14,7 +14,7 @@ class Newspage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("News"),
+        title: Text("Ini Baru"),
         backgroundColor: Color(0xFF8E8E8E),
       ),
       body: SafeArea(
