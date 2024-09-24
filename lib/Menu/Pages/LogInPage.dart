@@ -11,9 +11,6 @@ class Loginpage extends StatelessWidget {
 
   final LoginController loginController = Get.put(LoginController());
 
-  final TextEditingController _nama = new TextEditingController();
-  final TextEditingController _pasword = new TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

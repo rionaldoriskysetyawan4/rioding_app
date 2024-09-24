@@ -30,12 +30,12 @@ class DashboardPage extends StatelessWidget {
           height: 80,
           decoration: BoxDecoration(
             color: Color(0xFFBBB9B9), // Set a background color
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)), // Rounded top corners
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)), // Rounded top corners
           ),
           child: Container(
             padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
             ), // Ensure rounded corners
             child:
             BottomNavigationBar(

@@ -20,11 +20,12 @@ class ProfilPage extends StatelessWidget {
               children: [
                 Container(
                   decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(100)),
+                      BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.white),
                   child: Image.asset('images/RIODING.png'),
                   height: 200,
                   width: 200,
                 ),
+                SizedBox(height: 20,),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
