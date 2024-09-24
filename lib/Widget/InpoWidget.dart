@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 class Inpowidget extends StatelessWidget {
 
+
   final String Text1;
   final String Text2;
   final String Imagemu;

@@ -29,10 +29,6 @@ class MyApp extends StatelessWidget {
             page: () => DashboardPage(),
           binding: MyBindings(),
         ),
-        GetPage(
-          name: '/Newspage',
-          page: () => Newspage(),
-        ),
       ],
     );
   }
