@@ -13,13 +13,25 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DashboardController dashboardController =
-    Get.put(DashboardController());
+    Get.find();
 
     final List<Widget> menus = [Newspage(), Bookpage(), ProfilPage()];
 
     return Obx(() {
       return Scaffold(
-        body: menus[dashboardController.selectedIndex.value],
+        backgroundColor: Color(0xFFD9D9D9),
+        body: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20), // Border radius kiri atas
+            topRight: Radius.circular(20), // Border radius kanan atas
+          ),
+          child: Container(
+            color: Colors.white,
+            child: menus[dashboardController.selectedIndex.value],
+          ),
+
+        ),
+
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: dashboardController.selectedIndex.value,
             onTap: dashboardController.changeMenu,

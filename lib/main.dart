@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rioding_app/BinBinding/Bindings.dart';
 import 'package:rioding_app/Menu/Dashboard_navdrawer.dart';
 import 'package:rioding_app/Menu/Dashboard_page.dart';
 import 'package:rioding_app/Menu/Pages/LogInPage.dart';
+import 'package:rioding_app/Menu/Pages/NewsPage.dart';
 
 
 void main() {
@@ -24,7 +26,13 @@ class MyApp extends StatelessWidget {
             page: () => Loginpage(),),
         GetPage(
             name: '/Dashboard',
-            page: () => DashboardPage(),)
+            page: () => DashboardPage(),
+          binding: MyBindings(),
+        ),
+        GetPage(
+          name: '/Newspage',
+          page: () => Newspage(),
+        ),
       ],
     );
   }

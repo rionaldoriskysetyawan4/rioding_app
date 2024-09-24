@@ -13,6 +13,7 @@ class Inpowidget extends StatelessWidget {
     return Container(
       width: 350,
       color: Colors.white,
+      padding: EdgeInsets.all(10),
       child:
       Row(
         children:[

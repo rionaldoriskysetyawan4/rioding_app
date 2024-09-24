@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rioding_app/Menu/Controller/Login%20Controller.dart';
 import 'package:rioding_app/Widget/MyTextField.dart';
 
 class Loginpage extends StatelessWidget {
 
   Loginpage({super.key});
+
+  final LoginController loginController = Get.put(LoginController());
 
   final TextEditingController _nama = new TextEditingController();
   final TextEditingController _pasword = new TextEditingController();
@@ -54,11 +57,13 @@ class Loginpage extends StatelessWidget {
                     height: 20,
                   ),
                   MyTextField(
-                    Text: "Masukkan Nama",
-                    Radius: 20,
-                    Width: 350,
-                    Height: 50,
-                    controller: _nama,
+                    Text: "Masukkan Nama", // Label input
+                    Radius: 20, // Radius untuk border
+                    Width: 350, // Lebar field
+                    Height: 50, // Tinggi field
+                    onChanged: (value) {
+                      loginController.email.value = value;
+                    },
                   ),
                   SizedBox(
                     height: 20,
@@ -69,7 +74,9 @@ class Loginpage extends StatelessWidget {
                     Width: 350,
                     Height: 50,
                     isObsecured: true,
-                    controller: _pasword,
+                    onChanged: (value) {
+                      loginController.password.value = value;
+                    },
                   ),
                 ],
               ),
@@ -89,12 +96,16 @@ class Loginpage extends StatelessWidget {
                   child: SizedBox(
                     width: 100,  // Set the button's width to 100
                     height: 50,  // Set the button's height to 50
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Get.toNamed('/Dashboard');
-                      },
-                      child: Text("Login"),
-                    ),
+                    child:  Obx(() {
+                      return loginController.isLoading.value
+                          ? CircularProgressIndicator()
+                          : ElevatedButton(
+                        onPressed: () {
+                          loginController.login();
+                        },
+                        child: Text('Login'),
+                      );
+                    }),
                   ),
                 ),
               ),
