@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rioding_app/Data/Dataview.dart';
-import 'package:rioding_app/Data/DataController.dart';
 import 'package:rioding_app/Menu/Pages/Book/NewsPage.dart';
 import 'package:rioding_app/Widget/InpoWidget.dart';
 
@@ -11,7 +10,6 @@ class Newspage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final NewsController listController = Get.find();
-    final ImageController imageController = Get.find();
 
     return Scaffold(
       appBar: AppBar(
