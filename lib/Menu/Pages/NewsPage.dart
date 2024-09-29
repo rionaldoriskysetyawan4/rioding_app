@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rioding_app/Data/Dataview.dart';
 import 'package:rioding_app/Data/DataController.dart';
+import 'package:rioding_app/Menu/Pages/Book/NewsPage.dart';
 import 'package:rioding_app/Widget/InpoWidget.dart';
 
 class Newspage extends StatelessWidget {
@@ -14,7 +15,7 @@ class Newspage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ini Baru"),
+        title: Text("News"),
         backgroundColor: Color(0xFF8E8E8E),
       ),
       body: SafeArea(
@@ -29,48 +30,87 @@ class Newspage extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     // First container with the image
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.blue, // Background color for the container
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20), // Apply the same border radius to the image
-                        child: Obx((){
-                          return Image.asset(
-                            imageController.imagePaths[imageController.currentIndex.value],
-                          );
-                        })
+                    IntrinsicHeight(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: AspectRatio(
+                          aspectRatio: 1,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Obx(() {
+                              final imagePath = imageController.imagePaths[imageController.currentIndex.value];
+                              return Image.asset(
+                                imagePath,
+                                fit: BoxFit.contain,
+                              );
+                            }),
+                          ),
+                        )
                       ),
                     ),
 
+
+
+
+
+
                     SizedBox(height: 20),
 
-                    // First ListView.builder within a container
                     Container(
-                      height: 300, // Fixed height for the scrollable ListView
+                      child: Text(
+                        "Berita Terbaru"
+                      ),
+                    ),
+                    SizedBox(height: 20),
+
+                    Container(
+                      height: 300,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.only(left: 5, right: 5),
                         child: ListView.builder(
                           itemCount: listController.items.length,
                           shrinkWrap: true, // Make it fit inside the container
-                          physics: ClampingScrollPhysics(), // Enable independent scrolling
+                          physics: const ClampingScrollPhysics(), // Enable independent scrolling
                           itemBuilder: (context, index) {
                             final item = listController.items[index];
-                            return Inpowidget(
-                              Imagemu: item.imageku,
-                              Text1: item.title,
-                              Text2: item.description,
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailPage(
+                                      image: item.imageku,
+                                      title: item.title,
+                                      description: item.description,
+                                      valuemu: item.valuemu, // Passing valuemu to DetailPage
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Inpowidget(
+                                Imagemu: item.imageku,
+                                Text1: item.title,
+                                Text2: item.description,
+                              ),
                             );
                           },
-                        ),
-                      ),
+                        )
+
+                      )
                     ),
 
+                    SizedBox(height: 20),
+                    Container(
+                      child: Text(
+                          "Berita"
+                      ),
+                    ),
                     SizedBox(height: 20),
 
                     // Second ListView.builder without scrolling
@@ -80,17 +120,32 @@ class Newspage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.only(left: 5, right: 5),
                         child: ListView.builder(
                           shrinkWrap: true, // Fit content size
                           physics: NeverScrollableScrollPhysics(), // Disable scrolling here
                           itemCount: listController.items.length,
                           itemBuilder: (context, index) {
                             final item = listController.items[index];
-                            return Inpowidget(
-                              Imagemu: item.imageku,
-                              Text1: item.title,
-                              Text2: item.description,
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailPage(
+                                      image: item.imageku,
+                                      title: item.title,
+                                      description: item.description,
+                                      valuemu: item.valuemu, // Passing valuemu to DetailPage
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Inpowidget(
+                                Imagemu: item.imageku,
+                                Text1: item.title,
+                                Text2: item.description,
+                              ),
                             );
                           },
                         ),

@@ -45,9 +45,9 @@ class DashboardPage extends StatelessWidget {
                 onTap: dashboardController.changeMenu,
                 items: [
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.home_outlined), label: "home"),
+                      icon: Icon(Icons.newspaper), label: "News"),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.money), label: "Transaction"),
+                      icon: Icon(Icons.book), label: "Book"),
                   BottomNavigationBarItem(
                       icon: Icon(Icons.person_2_outlined), label: "profile"),
                 ]),

@@ -14,22 +14,24 @@ class Inpowidget extends StatelessWidget {
     return Container(
       width: 350,
       color: Colors.transparent,
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.only(left: 10, right: 10, top: 10),
       child:
       Row(
         children:[
           Image.asset(
             Imagemu ,
-            height: 100,
             width: 100,
           ),
           Container(
+            padding: EdgeInsets.only(left: 10, right: 10),
             child: Column(
-              children: <Widget>[
+              crossAxisAlignment: CrossAxisAlignment.start, // Aligns text to the left
+              children: [
                 Text(Text1),
-                Text(Text2)
+                Text(Text2),
               ],
-            ),
+            )
+
           ),
         ]
 

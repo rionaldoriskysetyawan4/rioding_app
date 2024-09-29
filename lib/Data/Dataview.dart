@@ -18,8 +18,8 @@ class NewsController extends GetxController {
   // Method to load some initial items
   void loadNewsItems() {
     items.addAll([
-      NewsMuModel(title: 'Item 1', description: 'This is the description for item 1', imageku: 'images/RIODING.png',),
-      NewsMuModel(title: 'Item 2', description: 'This is the description for item 2', imageku: 'images/RIODING.png',),
+      NewsMuModel(title: 'Item 1', description: 'This is the description for item 1', imageku: 'images/RIODING.png', valuemu: 'Bumi Bagus Wiraguna atau biasa yang dipanggil bum, mi, bumi, bagus, gus, wir wiraguna, raguna, gun atau jawir', ),
+      NewsMuModel(title: 'Item 2', description: 'This is the description for item 2', imageku: 'images/RIODING.png', valuemu: 'Bumi Bagus Wiraguna atau biasa yang dipanggil bum, mi, bumi, bagus, gus, wir wiraguna, raguna, gun atau jawir',),
       NewsMuModel(title: 'Item 3', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
       NewsMuModel(title: 'Item 4', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
       NewsMuModel(title: 'Item 5', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
@@ -29,19 +29,11 @@ class NewsController extends GetxController {
 
   void loadBookItems() {
     itemsmu.addAll([
-      BookMuModel(title: 'Item 1', description: 'This is the description for item 1', imageku: 'images/RIODING.png',),
-      BookMuModel(title: 'Item 2', description: 'This is the description for item 2', imageku: 'images/RIODING.png',),
-      BookMuModel(title: 'Item 3', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
-      BookMuModel(title: 'Item 4', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
-      BookMuModel(title: 'Item 5', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
-      BookMuModel(title: 'Item 6', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
-      BookMuModel(title: 'Item 6', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
-      BookMuModel(title: 'Item 6', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
-      BookMuModel(title: 'Item 6', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
-      BookMuModel(title: 'Item 6', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
-      BookMuModel(title: 'Item 6', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
-      BookMuModel(title: 'Item 6', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
-      BookMuModel(title: 'Item 6', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
+      BookMuModel(title: 'Bumi', description: 'This is the description for item 1', imageku: 'images/Bumi.png', valuemu: 'Bumi Bagus Wiraguna atau biasa yang dipanggil bum, mi, bumi, bagus, gus, wir wiraguna, raguna, gun atau jawir',),
+      BookMuModel(title: 'Bulan', description: 'This is the description for item 2', imageku: 'images/Bulan.png', valuemu: 'Thisssidjsdfsfsfsdgdrhfjfjfjfjfjfjfjfjfhfdhfdhdfhfdhdfhfdhfhdfhdfhdfvnffh',),
+      BookMuModel(title: 'Matahari', description: 'This is the description for item 3', imageku: 'images/Matahari.png', valuemu: 'Thisssidjsdfsfsfsdgdrhfjfjfjfjfjfjfjfjfhfdhfdhdfhfdhdfhfdhfhdfhdfhdfvnffh',),
+      BookMuModel(title: 'Komet', description: 'This is the description for item 3', imageku: 'images/Komet.png', valuemu: 'Thisssidjsdfsfsfsdgdrhfjfjfjfjfjfjfjfjfhfdhfdhdfhfdhdfhfdhfhdfhdfhdfvnffh',),
+      BookMuModel(title: 'Atomic Habit', description: 'This is the description for item 3', imageku: 'images/Atomic Habits.png', valuemu: 'Thisssidjsdfsfsfsdgdrhfjfjfjfjfjfjfjfjfhfdhfdhdfhfdhdfhfdhfhdfhdfhdfvnffh',),
     ]);
   }
 }

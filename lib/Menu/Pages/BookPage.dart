@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rioding_app/Data/Dataview.dart';
+import 'package:rioding_app/Menu/Pages/Book/NewsPage.dart';
 import 'package:rioding_app/Widget/InpoWidget.dart';
 
 class Bookpage extends StatelessWidget {
@@ -39,13 +40,30 @@ class Bookpage extends StatelessWidget {
                   itemCount: bookController.itemsmu.length,
                   itemBuilder: (context, index) {
                     final item = bookController.itemsmu[index];
-                    return Inpowidget(
-                      Imagemu: item.imageku,
-                      Text1: item.title,
-                      Text2: item.description,
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(
+                              image: item.imageku,
+                              title: item.title,
+                              description: item.description,
+                              valuemu: item.valuemu, // Mengirimkan valuemu ke DetailPage
+                            ),
+                          ),
+                        );
+                      },
+                      child: Inpowidget(
+                        Imagemu: item.imageku,
+                        Text1: item.title,
+                        Text2: item.description,
+                      ),
                     );
                   },
-                ),
+                )
+
+
               ),
             ],
           ),

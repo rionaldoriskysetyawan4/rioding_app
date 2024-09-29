@@ -68,6 +68,17 @@ flutter:
   assets:
     - images/exit.png
     - images/RIODING.png
+    - images/Bumi.png
+    - images/Bulan.png
+    - images/Matahari.png
+    - images/Tere Liye.png
+    - images/Atomic Habits.png
+    - images/Komet.png
+    - images/Serlok.png
+    - images/The Art of Game.png
+    - images/The Intelligent Investor.png
+    - images/SekolahRusia.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

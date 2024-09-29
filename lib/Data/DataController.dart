@@ -7,8 +7,10 @@ class ImageController extends GetxController {
 
   // List of image paths
   final List<String> imagePaths = [
+    'images/Bumi.png',
+    'images/Bulan.png',
     'images/RIODING.png',
-    'images/exit.png'
+    'images/SekolahRusia.png'
   ];
 
   @override
