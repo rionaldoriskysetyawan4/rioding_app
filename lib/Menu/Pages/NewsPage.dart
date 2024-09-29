@@ -33,6 +33,7 @@ class Newspage extends StatelessWidget {
                     IntrinsicHeight(
                       child: Container(
                         decoration: BoxDecoration(
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: AspectRatio(
