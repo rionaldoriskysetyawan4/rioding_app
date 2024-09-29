@@ -22,11 +22,10 @@ class NewsController extends GetxController {
   void loadNewsItems() {
     items.addAll([
       NewsMuModel(title: 'Perang Rusia Ukraina', description: 'This is the description for item 1', imageku: 'images/SekolahRusia.png', valuemu: 'Bumi Bagus Wiraguna atau biasa yang dipanggil bum, mi, bumi, bagus, gus, wir wiraguna, raguna, gun atau jawir'),
-      NewsMuModel(title: 'Item 2', description: 'This is the description for item 2', imageku: 'images/RIODING.png', valuemu: 'Bumi Bagus Wiraguna atau biasa yang dipanggil bum, mi, bumi, bagus, gus, wir wiraguna, raguna, gun atau jawir'),
-      NewsMuModel(title: 'Item 3', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
-      NewsMuModel(title: 'Item 4', description: 'This is the description for item 4', imageku: 'images/RIODING.png'),
-      NewsMuModel(title: 'Item 5', description: 'This is the description for item 5', imageku: 'images/RIODING.png'),
-      NewsMuModel(title: 'Item 6', description: 'This is the description for item 6', imageku: 'images/RIODING.png'),
+      NewsMuModel(title: 'Free Palestine', description: 'This is the description for item 2', imageku: 'images/Palestine.png', valuemu: 'Bumi Bagus Wiraguna atau biasa yang dipanggil bum, mi, bumi, bagus, gus, wir wiraguna, raguna, gun atau jawir'),
+      NewsMuModel(title: 'Drone Puyuh Hitam', description: 'This is the description for item 3', imageku: 'images/elanghitam.png'),
+      NewsMuModel(title: 'Frigate Merah Putih', description: 'This is the description for item 4', imageku: 'images/frigate.png'),
+      NewsMuModel(title: 'Putin Melonggarkan aturan Nuklir', description: 'This is the description for item 5', imageku: 'images/Putin.png'),
     ]);
   }
 

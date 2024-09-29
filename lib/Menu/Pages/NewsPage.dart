@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rioding_app/Data/Dataview.dart';
 import 'package:rioding_app/Menu/Pages/Book/NewsPage.dart';
 import 'package:rioding_app/Widget/InpoWidget.dart';
+import 'package:rioding_app/Widget/NewsWidget.dart';
 
 class Newspage extends StatelessWidget {
   const Newspage({super.key});
@@ -41,7 +42,8 @@ class Newspage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20),
                                 child: Obx(() {
                                   // Get the current item from the listController based on the currentIndex
-                                  final item = listController.items[listController.currentIndex.value];
+                                  final item = listController
+                                      .items[listController.currentIndex.value];
                                   return GestureDetector(
                                     onTap: () {
                                       Navigator.push(
@@ -56,10 +58,10 @@ class Newspage extends StatelessWidget {
                                         ),
                                       );
                                     },
-                                    child:
-                                    Image.asset(
+                                    child: Image.asset(
                                       item.imageku, // Use the image from the current item
-                                      fit: BoxFit.cover, // Ensure the image covers the entire area
+                                      fit: BoxFit
+                                          .cover, // Ensure the image covers the entire area
                                     ),
                                   );
                                 }),
@@ -81,7 +83,8 @@ class Newspage extends StatelessWidget {
                                 padding: EdgeInsets.all(8.0),
                                 child: Obx(() {
                                   // Get the current item title from the listController
-                                  final item = listController.items[listController.currentIndex.value];
+                                  final item = listController
+                                      .items[listController.currentIndex.value];
                                   return Text(
                                     item.title, // Display the title from the current item
                                     style: TextStyle(
@@ -99,18 +102,22 @@ class Newspage extends StatelessWidget {
                       ),
                     ),
 
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     // First ListView.builder for displaying news items with AspectRatio
                     Container(
-                      height: 200,// Fixed height for the news item container
+                      height: 200, // Fixed height for the news item container
                       child: ListView.builder(
                         itemCount: listController.items.length,
-                        scrollDirection: Axis.horizontal, // Horizontal scrolling
+                        scrollDirection:
+                            Axis.horizontal, // Horizontal scrolling
                         itemBuilder: (context, index) {
                           final item = listController.items[index];
                           return Container(
                             width: 200, // Fixed width for each item
-                            margin: EdgeInsets.only(right: 10), // Space between items
+                            margin: EdgeInsets.only(
+                                right: 10), // Space between items
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.white,
@@ -123,14 +130,16 @@ class Newspage extends StatelessWidget {
                                     aspectRatio: 1, // Maintain aspect ratio
                                     child: Image.asset(
                                       item.imageku, // Use image path from the listController
-                                      fit: BoxFit.cover, // Ensure the image covers the area
+                                      fit: BoxFit
+                                          .cover, // Ensure the image covers the area
                                     ),
                                   ),
                                   Positioned(
                                     left: 0,
                                     right: 0,
                                     bottom: 0,
-                                    height: 60, // Adjust the height for the text container
+                                    height:
+                                        60, // Adjust the height for the text container
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: Colors.black.withOpacity(0.5),
@@ -196,41 +205,43 @@ class Newspage extends StatelessWidget {
                                   ),
                                 );
                               },
-                              child: Inpowidget(
+                              child: Newswidget(
                                 Imagemu: item.imageku,
                                 Text1: item.title,
                                 Text2: item.description,
                               ),
+
                             );
                           },
                         ),
                       ),
                     ),
                     SizedBox(height: 20),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: ListView.builder(
-              shrinkWrap: true, // Fit content size
-              physics: NeverScrollableScrollPhysics(), // Disable scrolling here
-              itemCount: listController.items.length,
-              itemBuilder: (context, index) {
-                final item = listController.items[index];
-                return Inpowidget(
-                  Imagemu: item.imageku,
-                  Text1: item.title,
-                  Text2: item.description,
-                );
-              },
-            ),
-          ),
-        ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: ListView.builder(
+                          shrinkWrap: true, // Fit content size
+                          physics:
+                              NeverScrollableScrollPhysics(), // Disable scrolling here
+                          itemCount: listController.items.length,
+                          itemBuilder: (context, index) {
+                            final item = listController.items[index];
+                            return Newswidget(
+                              Imagemu: item.imageku,
+                              Text1: item.title,
+                              Text2: item.description,
+                            );
+                          },
+                        ),
+                      ),
+                    ),
 
-          // Additional content can go here
+                    // Additional content can go here
                   ],
                 ),
               ],
