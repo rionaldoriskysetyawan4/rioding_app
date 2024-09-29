@@ -42,9 +42,25 @@ class Newspage extends StatelessWidget {
                                 child: Obx(() {
                                   // Get the current item from the listController based on the currentIndex
                                   final item = listController.items[listController.currentIndex.value];
-                                  return Image.asset(
-                                    item.imageku, // Use the image from the current item
-                                    fit: BoxFit.cover, // Ensure the image covers the entire area
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => DetailPage(
+                                            image: item.imageku,
+                                            title: item.title,
+                                            description: item.description,
+                                            valuemu: item.valuemu,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child:
+                                    Image.asset(
+                                      item.imageku, // Use the image from the current item
+                                      fit: BoxFit.cover, // Ensure the image covers the entire area
+                                    ),
                                   );
                                 }),
                               ),
@@ -191,8 +207,30 @@ class Newspage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 20),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: ListView.builder(
+              shrinkWrap: true, // Fit content size
+              physics: NeverScrollableScrollPhysics(), // Disable scrolling here
+              itemCount: listController.items.length,
+              itemBuilder: (context, index) {
+                final item = listController.items[index];
+                return Inpowidget(
+                  Imagemu: item.imageku,
+                  Text1: item.title,
+                  Text2: item.description,
+                );
+              },
+            ),
+          ),
+        ),
 
-                    // Additional content can go here
+          // Additional content can go here
                   ],
                 ),
               ],

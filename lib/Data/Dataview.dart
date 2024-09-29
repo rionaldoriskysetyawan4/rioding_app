@@ -21,7 +21,7 @@ class NewsController extends GetxController {
   // Method to load some initial news items
   void loadNewsItems() {
     items.addAll([
-      NewsMuModel(title: 'Item 1', description: 'This is the description for item 1', imageku: 'images/RIODING.png', valuemu: 'Bumi Bagus Wiraguna atau biasa yang dipanggil bum, mi, bumi, bagus, gus, wir wiraguna, raguna, gun atau jawir'),
+      NewsMuModel(title: 'Perang Rusia Ukraina', description: 'This is the description for item 1', imageku: 'images/SekolahRusia.png', valuemu: 'Bumi Bagus Wiraguna atau biasa yang dipanggil bum, mi, bumi, bagus, gus, wir wiraguna, raguna, gun atau jawir'),
       NewsMuModel(title: 'Item 2', description: 'This is the description for item 2', imageku: 'images/RIODING.png', valuemu: 'Bumi Bagus Wiraguna atau biasa yang dipanggil bum, mi, bumi, bagus, gus, wir wiraguna, raguna, gun atau jawir'),
       NewsMuModel(title: 'Item 3', description: 'This is the description for item 3', imageku: 'images/RIODING.png'),
       NewsMuModel(title: 'Item 4', description: 'This is the description for item 4', imageku: 'images/RIODING.png'),
