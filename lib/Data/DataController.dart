@@ -17,7 +17,7 @@ class ImageController extends GetxController {
   void onInit() {
     super.onInit();
     // Start the timer when the controller is initialized
-    timer = Timer.periodic(Duration(seconds: 5), (timer) {
+    timer = Timer.periodic(Duration(seconds: 10), (timer) {
       currentIndex.value = (currentIndex.value + 1) % imagePaths.length;
     });
   }

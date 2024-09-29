@@ -36,26 +36,45 @@ class Newspage extends StatelessWidget {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: AspectRatio(
-                          aspectRatio: 1,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Obx(() {
-                              final imagePath = imageController.imagePaths[imageController.currentIndex.value];
-                              return Image.asset(
-                                imagePath,
-                                fit: BoxFit.contain,
-                              );
-                            }),
-                          ),
-                        )
+                        child: Stack(
+                          children: [
+
+                            AspectRatio(
+                              aspectRatio: 1,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Obx(() {
+                                  final imagePath = imageController.imagePaths[imageController.currentIndex.value];
+                                  return Image.asset(
+                                    imagePath,
+                                    fit: BoxFit.contain,
+                                  );
+                                }),
+                              ),
+                            ),
+
+                            Positioned(
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              height: 80,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.5),
+                                  borderRadius: BorderRadius.only( // Apply border radius only to the top corners
+                                    bottomLeft: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0),
+                                  ),
+                                ),
+                                padding: EdgeInsets.all(8.0),
+                                child: Text('Your Text Here', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold,), textAlign: TextAlign.left,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-
-
-
-
-
 
                     SizedBox(height: 20),
 
@@ -85,24 +104,16 @@ class Newspage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => DetailPage(
-                                      image: item.imageku,
-                                      title: item.title,
-                                      description: item.description,
-                                      valuemu: item.valuemu, // Passing valuemu to DetailPage
+                                    builder: (context) => DetailPage(image: item.imageku, title: item.title, description: item.description, valuemu: item.valuemu, // Passing valuemu to DetailPage
                                     ),
                                   ),
                                 );
                               },
-                              child: Inpowidget(
-                                Imagemu: item.imageku,
-                                Text1: item.title,
-                                Text2: item.description,
+                              child: Inpowidget(Imagemu: item.imageku, Text1: item.title, Text2: item.description,
                               ),
                             );
                           },
                         )
-
                       )
                     ),
 
@@ -113,7 +124,6 @@ class Newspage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 20),
-
                     // Second ListView.builder without scrolling
                     Container(
                       decoration: BoxDecoration(
@@ -133,19 +143,12 @@ class Newspage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => DetailPage(
-                                      image: item.imageku,
-                                      title: item.title,
-                                      description: item.description,
-                                      valuemu: item.valuemu, // Passing valuemu to DetailPage
+                                    builder: (context) => DetailPage(image: item.imageku,title: item.title, description: item.description, valuemu: item.valuemu, // Passing valuemu to DetailPage
                                     ),
                                   ),
                                 );
                               },
-                              child: Inpowidget(
-                                Imagemu: item.imageku,
-                                Text1: item.title,
-                                Text2: item.description,
+                              child: Inpowidget(Imagemu: item.imageku, Text1: item.title, Text2: item.description,
                               ),
                             );
                           },
