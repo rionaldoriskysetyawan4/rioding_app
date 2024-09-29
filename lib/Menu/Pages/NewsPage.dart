@@ -29,7 +29,6 @@ class Newspage extends StatelessWidget {
               children: [
                 Column(
                   children: <Widget>[
-                    // First container with the image
                     IntrinsicHeight(
                       child: Container(
                         decoration: BoxDecoration(
@@ -38,21 +37,20 @@ class Newspage extends StatelessWidget {
                         ),
                         child: Stack(
                           children: [
-
                             AspectRatio(
                               aspectRatio: 1,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: Obx(() {
-                                  final imagePath = imageController.imagePaths[imageController.currentIndex.value];
+                                  // Get the current item from the listController based on the currentIndex
+                                  final item = listController.items[listController.currentIndex.value];
                                   return Image.asset(
-                                    imagePath,
-                                    fit: BoxFit.contain,
+                                    item.imageku, // Use the image from the current item
+                                    fit: BoxFit.cover, // Ensure the image covers the entire area
                                   );
                                 }),
                               ),
                             ),
-
                             Positioned(
                               left: 0,
                               right: 0,
@@ -61,14 +59,25 @@ class Newspage extends StatelessWidget {
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.black.withOpacity(0.5),
-                                  borderRadius: BorderRadius.only( // Apply border radius only to the top corners
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(20.0),
                                     bottomRight: Radius.circular(20.0),
                                   ),
                                 ),
                                 padding: EdgeInsets.all(8.0),
-                                child: Text('Your Text Here', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold,), textAlign: TextAlign.left,
-                                ),
+                                child: Obx(() {
+                                  // Get the current item title from the listController
+                                  final item = listController.items[listController.currentIndex.value];
+                                  return Text(
+                                    item.title, // Display the title from the current item
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.left,
+                                  );
+                                }),
                               ),
                             ),
                           ],
@@ -76,15 +85,75 @@ class Newspage extends StatelessWidget {
                       ),
                     ),
 
+                    SizedBox(height: 20,),
+                    // First ListView.builder for displaying news items with AspectRatio
+                    Container(
+                      height: 200,// Fixed height for the news item container
+                      child: ListView.builder(
+                        itemCount: listController.items.length,
+                        scrollDirection: Axis.horizontal, // Horizontal scrolling
+                        itemBuilder: (context, index) {
+                          final item = listController.items[index];
+                          return Container(
+                            width: 200, // Fixed width for each item
+                            margin: EdgeInsets.only(right: 10), // Space between items
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Stack(
+                                children: [
+                                  AspectRatio(
+                                    aspectRatio: 1, // Maintain aspect ratio
+                                    child: Image.asset(
+                                      item.imageku, // Use image path from the listController
+                                      fit: BoxFit.cover, // Ensure the image covers the area
+                                    ),
+                                  ),
+                                  Positioned(
+                                    left: 0,
+                                    right: 0,
+                                    bottom: 0,
+                                    height: 60, // Adjust the height for the text container
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.5),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(20.0),
+                                          bottomRight: Radius.circular(20.0),
+                                        ),
+                                      ),
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        item.title, // Display the title
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+
                     SizedBox(height: 20),
 
+                    // Other containers and ListViews can go here as needed
                     Container(
-                      child: Text(
-                        "Berita Terbaru"
-                      ),
+                      child: Text("Berita Terbaru"),
                     ),
                     SizedBox(height: 20),
 
+                    // Another ListView for the news items
                     Container(
                       height: 300,
                       decoration: BoxDecoration(
@@ -95,8 +164,8 @@ class Newspage extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 5, right: 5),
                         child: ListView.builder(
                           itemCount: listController.items.length,
-                          shrinkWrap: true, // Make it fit inside the container
-                          physics: const ClampingScrollPhysics(), // Enable independent scrolling
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
                           itemBuilder: (context, index) {
                             final item = listController.items[index];
                             return GestureDetector(
@@ -104,57 +173,28 @@ class Newspage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => DetailPage(image: item.imageku, title: item.title, description: item.description, valuemu: item.valuemu, // Passing valuemu to DetailPage
+                                    builder: (context) => DetailPage(
+                                      image: item.imageku,
+                                      title: item.title,
+                                      description: item.description,
+                                      valuemu: item.valuemu,
                                     ),
                                   ),
                                 );
                               },
-                              child: Inpowidget(Imagemu: item.imageku, Text1: item.title, Text2: item.description,
-                              ),
-                            );
-                          },
-                        )
-                      )
-                    ),
-
-                    SizedBox(height: 20),
-                    Container(
-                      child: Text(
-                          "Berita"
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    // Second ListView.builder without scrolling
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5, right: 5),
-                        child: ListView.builder(
-                          shrinkWrap: true, // Fit content size
-                          physics: NeverScrollableScrollPhysics(), // Disable scrolling here
-                          itemCount: listController.items.length,
-                          itemBuilder: (context, index) {
-                            final item = listController.items[index];
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => DetailPage(image: item.imageku,title: item.title, description: item.description, valuemu: item.valuemu, // Passing valuemu to DetailPage
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Inpowidget(Imagemu: item.imageku, Text1: item.title, Text2: item.description,
+                              child: Inpowidget(
+                                Imagemu: item.imageku,
+                                Text1: item.title,
+                                Text2: item.description,
                               ),
                             );
                           },
                         ),
                       ),
                     ),
+                    SizedBox(height: 20),
+
+                    // Additional content can go here
                   ],
                 ),
               ],
