@@ -91,8 +91,6 @@ class Loginpage extends StatelessWidget {
                 child: Container(
                   color: Color(0xFFBBB9B9),
                   child: SizedBox(
-                    width: 100,  // Set the button's width to 100
-                    height: 50,  // Set the button's height to 50
                     child:  Obx(() {
                       return loginController.isLoading.value
                           ? CircularProgressIndicator()

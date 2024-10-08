@@ -18,6 +18,7 @@ class DashboardPage extends StatelessWidget {
       Newspage(),
       Bookpage(),
       ProfilPage(),
+
     ];
 
     return Obx(() {
@@ -33,8 +34,9 @@ class DashboardPage extends StatelessWidget {
             borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)), // Rounded top corners
           ),
           child: Container(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(5.0),
             decoration: BoxDecoration(
+              color: Color(0xFFBBB9B9),
               borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
             ), // Ensure rounded corners
             child:
@@ -43,6 +45,7 @@ class DashboardPage extends StatelessWidget {
               backgroundColor: Color(0xFFBBB9B9),
                 currentIndex: dashboardController.selectedIndex.value,
                 onTap: dashboardController.changeMenu,
+                iconSize: 20,
                 items: [
                   BottomNavigationBarItem(
                       icon: Icon(Icons.newspaper), label: "News"),
