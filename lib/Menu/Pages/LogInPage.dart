@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rioding_app/Menu/Controller/Login%20Controller.dart';
 import 'package:rioding_app/Widget/MyTextField.dart';
 
@@ -91,8 +90,6 @@ class Loginpage extends StatelessWidget {
                 child: Container(
                   color: Color(0xFFBBB9B9),
                   child: SizedBox(
-                    width: 100,  // Set the button's width to 100
-                    height: 50,  // Set the button's height to 50
                     child:  Obx(() {
                       return loginController.isLoading.value
                           ? CircularProgressIndicator()

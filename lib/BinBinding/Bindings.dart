@@ -6,6 +6,6 @@ class MyBindings extends Bindings {
   void dependencies() {
     Get.lazyPut(() => DashboardController());
     Get.lazyPut(() => NewsController());
-    Get.lazyPut(() => NewsController());
+
   }
 }
