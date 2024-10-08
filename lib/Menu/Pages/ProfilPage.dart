@@ -19,30 +19,54 @@ class ProfilPage extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.white),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.white),
                   child: Image.asset('images/RIODING.png'),
                   height: 200,
                   width: 200,
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child:
-                  Container(
+                  child: Container(
                     padding: EdgeInsets.only(left: 10, right: 10),
-                    child: Text("John Doe", style: TextStyle(fontSize: 20),),
+                    child: Text(
+                      "John Doe",
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                 ),
-                SizedBox(height: 20,),
-                ElevatedButton(
-                    onPressed: () {
-                      Get.offNamed('/');
-                    },
-                      child: Text("LogOut"))
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child:
+                  Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20)),
+                        color: Colors.white,
+                      ),
+                      width: MediaQuery.of(context).size.width,
+                      child:
+                      Column(
+                      children: <Widget>[
+                        ElevatedButton(
+                            onPressed: () {
+                              Get.offNamed('/');
+                            },
+                            child: Text("LogOut"))
+                      ]
+                    ),
+                  ),
+                )
               ],
             ),
           ),

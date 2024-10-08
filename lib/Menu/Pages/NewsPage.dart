@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rioding_app/Data/Dataview.dart';
-import 'package:rioding_app/Data/DataController.dart';
+import 'package:rioding_app/Menu/Pages/Book/NewsPage.dart';
 import 'package:rioding_app/Widget/InpoWidget.dart';
+import 'package:rioding_app/Widget/NewsWidget.dart';
 
 class Newspage extends StatelessWidget {
   const Newspage({super.key});
@@ -10,7 +11,6 @@ class Newspage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final NewsController listController = Get.find();
-    final ImageController imageController = Get.find();
 
     return Scaffold(
       appBar: AppBar(
@@ -28,74 +28,250 @@ class Newspage extends StatelessWidget {
               children: [
                 Column(
                   children: <Widget>[
-                    // First container with the image
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.blue, // Background color for the container
+                    IntrinsicHeight(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Stack(
+                          children: [
+                            AspectRatio(
+                              aspectRatio: 1,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Obx(() {
+                                  // Get the current item from the listController based on the currentIndex
+                                  final item = listController
+                                      .items[listController.currentIndex.value];
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => DetailPage(
+                                            image: item.imageku,
+                                            title: item.title,
+                                            description: item.description,
+                                            valuemu: item.valuemu,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Image.asset(
+                                      item.imageku, // Use the image from the current item
+                                      fit: BoxFit
+                                          .cover, // Ensure the image covers the entire area
+                                    ),
+                                  );
+                                }),
+                              ),
+                            ),
+                            Positioned(
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              height: 80,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.5),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0),
+                                  ),
+                                ),
+                                padding: EdgeInsets.all(8.0),
+                                child: Obx(() {
+                                  // Get the current item title from the listController
+                                  final item = listController
+                                      .items[listController.currentIndex.value];
+                                  return Text(
+                                    item.title, // Display the title from the current item
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.left,
+                                  );
+                                }),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20), // Apply the same border radius to the image
-                        child: Obx((){
-                          return Image.asset(
-                            imageController.imagePaths[imageController.currentIndex.value],
+                    ),
+
+                    SizedBox(
+                      height: 20,
+                    ),
+                    // First ListView.builder for displaying news items with AspectRatio
+                    Container(
+                      height: 200, // Fixed height for the news item container
+                      child: ListView.builder(
+                        itemCount: listController.items.length,
+                        scrollDirection:
+                            Axis.horizontal, // Horizontal scrolling
+                        itemBuilder: (context, index) {
+                          final item = listController.items[index];
+                          return GestureDetector(
+                            onTap: () {
+                              // Navigate to DetailPage when the item is tapped
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailPage(
+                                    title: item.title,
+                                    image: item.imageku,
+                                    description: item.description,
+                                    valuemu: item.valuemu,
+                                    // Tambahkan properti lain yang diperlukan untuk detail
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 200, // Fixed width for each item
+                              margin: EdgeInsets.only(
+                                  right: 10), // Space between items
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Stack(
+                                  children: [
+                                    AspectRatio(
+                                      aspectRatio: 1, // Maintain aspect ratio
+                                      child: Image.asset(
+                                        item.imageku, // Use image path from the listController
+                                        fit: BoxFit
+                                            .cover, // Ensure the image covers the area
+                                      ),
+                                    ),
+                                    Positioned(
+                                      left: 0,
+                                      right: 0,
+                                      bottom: 0,
+                                      height:
+                                          60, // Adjust the height for the text container
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.black.withOpacity(0.5),
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(20.0),
+                                            bottomRight: Radius.circular(20.0),
+                                          ),
+                                        ),
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text(
+                                          item.title, // Display the title
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           );
-                        })
+                        },
                       ),
                     ),
 
                     SizedBox(height: 20),
 
-                    // First ListView.builder within a container
+                    // Other containers and ListViews can go here as needed
                     Container(
-                      height: 300, // Fixed height for the scrollable ListView
+                      child: Text("Berita Terbaru"),
+                    ),
+                    SizedBox(height: 20),
+
+                    // Another ListView for the news items
+                    Container(
+                      height: 300,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.only(left: 5, right: 5),
                         child: ListView.builder(
                           itemCount: listController.items.length,
-                          shrinkWrap: true, // Make it fit inside the container
-                          physics: ClampingScrollPhysics(), // Enable independent scrolling
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
                           itemBuilder: (context, index) {
                             final item = listController.items[index];
-                            return Inpowidget(
-                              Imagemu: item.imageku,
-                              Text1: item.title,
-                              Text2: item.description,
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailPage(
+                                      image: item.imageku,
+                                      title: item.title,
+                                      description: item.description,
+                                      valuemu: item.valuemu,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Newswidget(
+                                Imagemu: item.imageku,
+                                Text1: item.title,
+                                Text2: item.description,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 5, right: 5),
+                        child: ListView.builder(
+                          itemCount: listController.items.length,
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            final item = listController.items[index];
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailPage(
+                                      image: item.imageku,
+                                      title: item.title,
+                                      description: item.description,
+                                      valuemu: item.valuemu,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Newswidget(
+                                Imagemu: item.imageku,
+                                Text1: item.title,
+                                Text2: item.description,
+                              ),
                             );
                           },
                         ),
                       ),
                     ),
 
-                    SizedBox(height: 20),
-
-                    // Second ListView.builder without scrolling
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: ListView.builder(
-                          shrinkWrap: true, // Fit content size
-                          physics: NeverScrollableScrollPhysics(), // Disable scrolling here
-                          itemCount: listController.items.length,
-                          itemBuilder: (context, index) {
-                            final item = listController.items[index];
-                            return Inpowidget(
-                              Imagemu: item.imageku,
-                              Text1: item.title,
-                              Text2: item.description,
-                            );
-                          },
-                        ),
-                      ),
-                    ),
+                    // Additional content can go here
                   ],
                 ),
               ],
