@@ -25,7 +25,7 @@ class LoginController extends GetxController {
         Get.snackbar('Success', 'Login berhasil');
         Get.offNamed('/Dashboard'); // Navigasi ke halaman Home jika login berhasil
       } else {
-        Get.snackbar('Error', 'Email atau password salah');
+        Get.snackbar('ISI DULU', 'Email atau password salah');
       }
     });
   }

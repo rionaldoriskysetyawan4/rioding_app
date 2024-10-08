@@ -46,7 +46,8 @@ class ProfilPage extends StatelessWidget {
                   height: 20,
                 ),
                 Expanded(
-                  child: Container(
+                  child:
+                  Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),

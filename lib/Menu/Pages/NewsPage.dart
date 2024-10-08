@@ -114,53 +114,70 @@ class Newspage extends StatelessWidget {
                             Axis.horizontal, // Horizontal scrolling
                         itemBuilder: (context, index) {
                           final item = listController.items[index];
-                          return Container(
-                            width: 200, // Fixed width for each item
-                            margin: EdgeInsets.only(
-                                right: 10), // Space between items
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Stack(
-                                children: [
-                                  AspectRatio(
-                                    aspectRatio: 1, // Maintain aspect ratio
-                                    child: Image.asset(
-                                      item.imageku, // Use image path from the listController
-                                      fit: BoxFit
-                                          .cover, // Ensure the image covers the area
-                                    ),
+                          return GestureDetector(
+                            onTap: () {
+                              // Navigate to DetailPage when the item is tapped
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailPage(
+                                    title: item.title,
+                                    image: item.imageku,
+                                    description: item.description,
+                                    valuemu: item.valuemu,
+                                    // Tambahkan properti lain yang diperlukan untuk detail
                                   ),
-                                  Positioned(
-                                    left: 0,
-                                    right: 0,
-                                    bottom: 0,
-                                    height:
-                                        60, // Adjust the height for the text container
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.5),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(20.0),
-                                          bottomRight: Radius.circular(20.0),
-                                        ),
-                                      ),
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Text(
-                                        item.title, // Display the title
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        textAlign: TextAlign.center,
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 200, // Fixed width for each item
+                              margin: EdgeInsets.only(
+                                  right: 10), // Space between items
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Stack(
+                                  children: [
+                                    AspectRatio(
+                                      aspectRatio: 1, // Maintain aspect ratio
+                                      child: Image.asset(
+                                        item.imageku, // Use image path from the listController
+                                        fit: BoxFit
+                                            .cover, // Ensure the image covers the area
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    Positioned(
+                                      left: 0,
+                                      right: 0,
+                                      bottom: 0,
+                                      height:
+                                          60, // Adjust the height for the text container
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.black.withOpacity(0.5),
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(20.0),
+                                            bottomRight: Radius.circular(20.0),
+                                          ),
+                                        ),
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text(
+                                          item.title, // Display the title
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           );
@@ -210,7 +227,6 @@ class Newspage extends StatelessWidget {
                                 Text1: item.title,
                                 Text2: item.description,
                               ),
-
                             );
                           },
                         ),
@@ -223,18 +239,32 @@ class Newspage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.only(left: 5, right: 5),
                         child: ListView.builder(
-                          shrinkWrap: true, // Fit content size
-                          physics:
-                              NeverScrollableScrollPhysics(), // Disable scrolling here
                           itemCount: listController.items.length,
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
                           itemBuilder: (context, index) {
                             final item = listController.items[index];
-                            return Newswidget(
-                              Imagemu: item.imageku,
-                              Text1: item.title,
-                              Text2: item.description,
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailPage(
+                                      image: item.imageku,
+                                      title: item.title,
+                                      description: item.description,
+                                      valuemu: item.valuemu,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Newswidget(
+                                Imagemu: item.imageku,
+                                Text1: item.title,
+                                Text2: item.description,
+                              ),
                             );
                           },
                         ),

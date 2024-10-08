@@ -23,7 +23,16 @@ class DetailPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Image.asset(image),
+            AspectRatio(
+              aspectRatio: 1, // Ensure the aspect ratio is 1:1
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover, // Ensure the image covers the container
+                ),
+              ),
+            ),
             SizedBox(height: 16),
             Text(
               title,
