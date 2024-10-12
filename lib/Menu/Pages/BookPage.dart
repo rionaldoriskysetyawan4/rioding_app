@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rioding_app/Data/Dataview.dart';
-import 'package:rioding_app/Menu/Pages/Book/NewsPage.dart';
+import 'package:rioding_app/Menu/Pages/Book/DetailPage.dart';
 import 'package:rioding_app/Widget/InpoWidget.dart';
 
 class Bookpage extends StatelessWidget {

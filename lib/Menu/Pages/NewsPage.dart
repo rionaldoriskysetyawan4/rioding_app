@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rioding_app/Data/Dataview.dart';
-import 'package:rioding_app/Menu/Pages/Book/NewsPage.dart';
+import 'package:rioding_app/Menu/Pages/Book/DetailPage.dart';
 import 'package:rioding_app/Widget/InpoWidget.dart';
 import 'package:rioding_app/Widget/NewsWidget.dart';
 
@@ -49,11 +49,7 @@ class Newspage extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => DetailPage(
-                                            image: item.imageku,
-                                            title: item.title,
-                                            description: item.description,
-                                            valuemu: item.valuemu,
+                                          builder: (context) => DetailPage(image: item.imageku, title: item.title, description: item.description, valuemu: item.valuemu,
                                           ),
                                         ),
                                       );
@@ -120,11 +116,7 @@ class Newspage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => DetailPage(
-                                    title: item.title,
-                                    image: item.imageku,
-                                    description: item.description,
-                                    valuemu: item.valuemu,
+                                  builder: (context) => DetailPage(title: item.title, image: item.imageku, description: item.description, valuemu: item.valuemu,
                                     // Tambahkan properti lain yang diperlukan untuk detail
                                   ),
                                 ),
@@ -213,19 +205,12 @@ class Newspage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => DetailPage(
-                                      image: item.imageku,
-                                      title: item.title,
-                                      description: item.description,
-                                      valuemu: item.valuemu,
+                                    builder: (context) => DetailPage(image: item.imageku, title: item.title, description: item.description, valuemu: item.valuemu,
                                     ),
                                   ),
                                 );
                               },
-                              child: Newswidget(
-                                Imagemu: item.imageku,
-                                Text1: item.title,
-                                Text2: item.description,
+                              child: Newswidget(Imagemu: item.imageku, Text1: item.title, Text2: item.description,
                               ),
                             );
                           },
@@ -251,19 +236,12 @@ class Newspage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => DetailPage(
-                                      image: item.imageku,
-                                      title: item.title,
-                                      description: item.description,
-                                      valuemu: item.valuemu,
+                                    builder: (context) => DetailPage(image: item.imageku, title: item.title, description: item.description, valuemu: item.valuemu,
                                     ),
                                   ),
                                 );
                               },
-                              child: Newswidget(
-                                Imagemu: item.imageku,
-                                Text1: item.title,
-                                Text2: item.description,
+                              child: Newswidget(Imagemu: item.imageku, Text1: item.title, Text2: item.description,
                               ),
                             );
                           },

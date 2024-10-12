@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:get/get.dart';
-import '../Menu/Controller/Model.dart';
+import '../Model/Model.dart';
 
 class NewsController extends GetxController {
   // Observable list of ItemModel

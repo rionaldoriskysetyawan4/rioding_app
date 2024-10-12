@@ -10,7 +10,6 @@ class NewsMuModel {
   NewsMuModel({required this.imageku, required this.title, required this.description, this.valuemu});
 }
 
-
 class BookMuModel {
   final String imageku;
   final String title;
