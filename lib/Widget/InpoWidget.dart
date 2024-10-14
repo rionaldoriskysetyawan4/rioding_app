@@ -1,38 +1,70 @@
 import 'package:flutter/material.dart';
 
 class Inpowidget extends StatelessWidget {
-  final String Text1;
-  final String Text2;
-  final String Imagemu;
+  final String imagemu;
+  final String text1;
+  final String text2;
+  final VoidCallback onAddTask;
+  final  Icon icon;
 
-  const Inpowidget({super.key, required this.Imagemu, required this.Text1, required this.Text2});
+  const Inpowidget({
+    Key? key,
+    required this.imagemu,
+    required this.text1,
+    required this.text2,
+    required this.onAddTask,
+    required this.icon,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 350,
-      color: Colors.transparent,
-      padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Row(
         children: [
           Image.asset(
-            Imagemu,
+            imagemu,
             width: 100,
+            errorBuilder: (context, error, stackTrace) =>
+            const Icon(Icons.error, size: 100),
           ),
-          SizedBox(width: 10), // Spasi antara gambar dan teks
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // Aligns text to the left
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  Text1,
-                  style: TextStyle(fontWeight: FontWeight.bold), // Tambahkan style jika diperlukan
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        text1,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Container(
+                      height: 50,
+                      width: 50,
+                      child: ElevatedButton(
+                        onPressed: onAddTask,
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          backgroundColor: Colors.transparent, // Mengatur warna latar belakang menjadi transparan
+                          shadowColor: Colors.transparent, // Menghilangkan bayangan
+                        ),
+                        child: icon, // Menempatkan ikon langsung di dalam ElevatedButton
+                      ),
+                    ),
+
+                  ],
                 ),
                 Text(
-                  Text2,
+                  text2,
                   softWrap: true,
-                  maxLines: null, // Membuat teks bisa meluas ke bawah sesuai kebutuhan
-                  overflow: TextOverflow.visible, // Membuat teks tidak terpotong
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,
                 ),
               ],
             ),

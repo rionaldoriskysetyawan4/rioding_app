@@ -4,6 +4,7 @@ class TaskModel {
   String description;
   String? valuemu; // Make valuemu nullable
   bool isCompleted;
+  String? imagemu; // Add the imagemu property
 
   TaskModel({
     this.id,
@@ -11,6 +12,7 @@ class TaskModel {
     required this.description,
     this.isCompleted = false,
     this.valuemu, // Make valuemu nullable in the constructor
+    this.imagemu, // Add imagemu to the constructor
   });
 
   // Convert a Task object into a Map object for inserting data into the database
@@ -21,6 +23,7 @@ class TaskModel {
       'description': description,
       'valuemu': valuemu,
       'isCompleted': isCompleted ? 1 : 0,
+      'imagemu': imagemu, // Add imagemu to the Map
     };
   }
 
@@ -32,6 +35,12 @@ class TaskModel {
       description: map['description'],
       valuemu: map['valuemu'], // Allow valuemu to be null
       isCompleted: map['isCompleted'] == 1,
+      imagemu: map['imagemu'], // Allow imagemu to be null
     );
+  }
+
+  @override
+  String toString() {
+    return 'TaskModel{id: $id, title: $title, description: $description, valuemu: $valuemu, isCompleted: $isCompleted, imagemu: $imagemu}';
   }
 }

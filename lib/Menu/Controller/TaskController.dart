@@ -18,6 +18,10 @@ class TaskController extends GetxController {
   Future<Database> initDB() async {
     var databasePath = await getDatabasesPath();
     String path = join(databasePath, 'task_database.db');
+
+    // Hapus database yang ada
+    await deleteDatabase(path);
+
     return await openDatabase(
       path,
       version: 1,
@@ -27,11 +31,14 @@ class TaskController extends GetxController {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 "title TEXT, "
                 "description TEXT, "
+                "imagemu TEXT, " // Tambahkan kolom imagemu
+                "valuemu TEXT, "
                 "isCompleted INTEGER)"
         );
       },
     );
   }
+
 
   // Insert Task
   Future<int> addTask(TaskModel task) async {

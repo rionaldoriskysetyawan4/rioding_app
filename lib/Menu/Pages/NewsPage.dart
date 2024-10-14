@@ -205,7 +205,11 @@ class Newspage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => DetailPage(image: item.imageku, title: item.title, description: item.description, valuemu: item.valuemu,
+                                    builder: (context) => DetailPage(
+                                      image: item.imageku,
+                                      title: item.title,
+                                      description: item.description,
+                                      valuemu: item.valuemu,
                                     ),
                                   ),
                                 );
@@ -236,7 +240,11 @@ class Newspage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => DetailPage(image: item.imageku, title: item.title, description: item.description, valuemu: item.valuemu,
+                                    builder: (context) => DetailPage(
+                                      image: item.imageku,
+                                      title: item.title,
+                                      description: item.description,
+                                      valuemu: item.valuemu,
                                     ),
                                   ),
                                 );
