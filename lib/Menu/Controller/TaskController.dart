@@ -20,8 +20,6 @@ class TaskController extends GetxController {
     String path = join(databasePath, 'task_database.db');
 
     // Hapus database yang ada
-    await deleteDatabase(path);
-
     return await openDatabase(
       path,
       version: 1,
@@ -46,6 +44,7 @@ class TaskController extends GetxController {
     int result = await dbClient.insert('tasks', task.toMap());
     loadTasks();
     return result;
+
   }
 
   // Retrieve Tasks

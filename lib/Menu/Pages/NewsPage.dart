@@ -20,8 +20,8 @@ class Newspage extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Container(
-            width: MediaQuery.of(context).size.width, // Full width
-            height: MediaQuery.of(context).size.height, // Full height
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             color: Color(0xFF8E8E8E),
             child: ListView(
               padding: EdgeInsets.all(10.0),
