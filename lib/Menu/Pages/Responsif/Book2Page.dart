@@ -5,7 +5,6 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../Data/Dataview.dart';
 import '../../../Model/TaskModel.dart';
 import '../../../Widget/InpoWidget.dart';
-import '../../../Widget/InpoWidget.dart';
 import '../../Controller/TaskController.dart';
 import '../Book/DetailPage.dart';
 
@@ -58,7 +57,7 @@ class Book2page extends StatelessWidget {
   }
 }
 Widget _buildHorizontalListView(NewsController bookController) {
-  return SizedBox(
+  return Obx(() => SizedBox(
     height: 200,
     child: ListView.builder(
       itemCount: bookController.itemsmu.length,
@@ -66,14 +65,13 @@ Widget _buildHorizontalListView(NewsController bookController) {
       itemBuilder: (context, index) {
         final item = bookController.itemsmu[index];
         return GestureDetector(
-          onTap: (){
+          onTap: () {
             Get.to(() => DetailPage(
               image: item.imageku,
               title: item.title,
               description: item.description,
               valuemu: item.valuemu,
             ));
-
           },
           child: Container(
             width: 200,
@@ -125,8 +123,9 @@ Widget _buildHorizontalListView(NewsController bookController) {
         );
       },
     ),
-  );
+  ));
 }
+
 Widget _buildVerticalListView(NewsController bookController, TaskController taskController) {
   return Container(
     padding: const EdgeInsets.all(5),

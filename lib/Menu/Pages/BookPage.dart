@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rioding_app/Data/Dataview.dart';
 import 'package:rioding_app/Menu/Controller/TaskController.dart';
 import 'package:rioding_app/Menu/Pages/Book/DetailPage.dart';
+import 'package:rioding_app/Menu/Pages/Responsif/Book2Page.dart';
 import 'package:rioding_app/Model/TaskModel.dart';
 import 'package:rioding_app/Widget/InpoWidget.dart';
 
@@ -14,27 +15,70 @@ class Bookpage extends StatelessWidget {
     final NewsController bookController = Get.find();
     final TaskController taskController = Get.find();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Book"),
-        backgroundColor: const Color(0xFF8E8E8E),
-      ),
-      body: SafeArea(
-        child: Container(
-          decoration: const BoxDecoration(
-            color: Color(0xFF8E8E8E),
+    final NewsController book2Controller = Get.find();
+    final TaskController task2Controller = Get.find();
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        bool isTablet = constraints.maxWidth > 600;
+
+        return Scaffold(
+          body: SafeArea(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                bool isTablet = constraints.maxWidth >
+                    600; // Define tablet size
+
+                return Container(
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF8E8E8E),
+                  ),
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
+                  child: ListView(
+                    padding: const EdgeInsets.all(10),
+                    children: [
+                      _buildHorizontalListView(book2Controller),
+                      const SizedBox(height: 20),
+                      // Responsive layout
+                      isTablet
+                          ? _buildTabletLayout(book2Controller, task2Controller)
+                          : _buildMobileLayout(
+                          book2Controller, task2Controller),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
-          width: MediaQuery.of(context).size.width,
-          child: ListView(
-            padding: const EdgeInsets.all(10),
-            children: [
-              _buildHorizontalListView(bookController),
-              const SizedBox(height: 20),
-              _buildVerticalListView(bookController, taskController),
-            ],
-          ),
+        );
+      }
+    );
+
+  }
+
+  Widget _buildTabletLayout(NewsController bookController, TaskController taskController) {
+    return Row(
+      children: [
+        Expanded(
+          child: _buildVerticalListView(bookController, taskController),
         ),
-      ),
+        const SizedBox(width: 10), // Space between columns
+        Expanded(
+          child: _buildVerticalListView(bookController, taskController),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMobileLayout(NewsController bookController, TaskController taskController) {
+    return Column(
+      children: [
+        _buildVerticalListView(bookController, taskController),
+        const SizedBox(height: 10),
+        _buildVerticalListView(bookController, taskController),
+      ],
     );
   }
 

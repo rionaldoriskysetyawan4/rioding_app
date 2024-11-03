@@ -17,6 +17,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
       onTap: onItemTapped,
       items: const [
         BottomNavigationBarItem(
+          icon: Icon(Icons.article, color: Color(0xFFF7BA20)),
+          label: 'News',
+        ),
+        BottomNavigationBarItem(
           icon: Icon(Icons.book, color: Color(0xFFF7BA20)),
           label: 'Book',
         ),
@@ -24,10 +28,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
           icon: Icon(Icons.favorite, color: Color(0xFFF7BA20)),
           label: 'Like',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.article, color: Color(0xFFF7BA20)),
-          label: 'News',
-        ),
+
         BottomNavigationBarItem(
           icon: Icon(Icons.person, color: Color(0xFFF7BA20)),
           label: 'Profile',

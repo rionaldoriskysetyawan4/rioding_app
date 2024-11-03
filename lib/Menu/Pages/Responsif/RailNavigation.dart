@@ -18,6 +18,10 @@ class CustomNavigationRail extends StatelessWidget {
       labelType: NavigationRailLabelType.all,
       destinations: const [
         NavigationRailDestination(
+          icon: Icon(Icons.article, color: Color(0xFFF7BA20)),
+          label: Text('News'),
+        ),
+        NavigationRailDestination(
           icon: Icon(Icons.book, color: Color(0xFFF7BA20)),
           label: Text('Book'),
         ),
@@ -25,10 +29,7 @@ class CustomNavigationRail extends StatelessWidget {
           icon: Icon(Icons.favorite, color: Color(0xFFF7BA20)),
           label: Text('Like'),
         ),
-        NavigationRailDestination(
-          icon: Icon(Icons.article, color: Color(0xFFF7BA20)),
-          label: Text('News'),
-        ),
+
         NavigationRailDestination(
           icon: Icon(Icons.person, color: Color(0xFFF7BA20)),
           label: Text('Profile'),

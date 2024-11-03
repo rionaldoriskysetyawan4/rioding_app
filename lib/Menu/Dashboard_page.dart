@@ -19,7 +19,7 @@ class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    Book2page(),
+    Bookpage(),
     Likepage(),
     Newspage(),
     ProfilPage(),
