@@ -3,6 +3,7 @@ import 'package:rioding_app/Menu/Pages/BookPage.dart';
 import 'package:rioding_app/Menu/Pages/LikePage.dart';
 import 'package:rioding_app/Menu/Pages/NewsPage.dart';
 import 'package:rioding_app/Menu/Pages/ProfilPage.dart';
+import 'package:rioding_app/Menu/Pages/Responsif/Book2Page.dart';
 
 import 'Pages/Responsif/BotomNavigation.dart';
 import 'Pages/Responsif/RailNavigation.dart';
@@ -18,7 +19,7 @@ class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    Bookpage(),
+    Book2page(),
     Likepage(),
     Newspage(),
     ProfilPage(),
