@@ -15,7 +15,7 @@ class DashboardNavdrawer extends StatelessWidget {
     Get.put(DashboardController());
 
 
-    final List<Widget> menus = [Newspage(), Bookpage(), ProfilPage()];
+    final List<Widget> menus = [Newspage(), BookPage(), ProfilPage()];
 
     return Obx( () => Scaffold(
         appBar: AppBar(

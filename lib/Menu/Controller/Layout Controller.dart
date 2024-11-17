@@ -1,19 +1,12 @@
 import 'package:get/get.dart';
+class Responsifcontroller extends GetxController {
+  var screenWidth = 0.0.obs;
 
-class LayoutController extends GetxController {
-  RxBool isMobileLayout = true.obs;
-  RxBool isTabletLayout = false.obs;
-
-  @override
-  void onInit() {
-    super.onInit();
-    checkScreenWidth();
-    ever(isMobileLayout, (_) => checkScreenWidth()); // Listen for changes
+  void updateScreenWidth(double width) {
+    screenWidth.value = width;
   }
 
-  void checkScreenWidth() {
-    double screenWidth = Get.width;
-    isMobileLayout.value = screenWidth < 640;
-    isTabletLayout.value = screenWidth >= 640 && screenWidth < 1024;
-  }
+  bool isMobile() => screenWidth.value < 600;
+  bool isTablet() => screenWidth.value >= 600 && screenWidth.value < 1200;
+  bool isDesktop() => screenWidth.value >= 1200;
 }

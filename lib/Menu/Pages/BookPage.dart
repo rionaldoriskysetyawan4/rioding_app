@@ -1,87 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rioding_app/Data/Dataview.dart';
+import 'package:rioding_app/Menu/Controller/Layout%20Controller.dart';
 import 'package:rioding_app/Menu/Controller/TaskController.dart';
 import 'package:rioding_app/Menu/Pages/Book/DetailPage.dart';
 import 'package:rioding_app/Menu/Pages/Responsif/Book2Page.dart';
 import 'package:rioding_app/Model/TaskModel.dart';
 import 'package:rioding_app/Widget/InpoWidget.dart';
 
-class Bookpage extends StatelessWidget {
-  const Bookpage({super.key});
+class BookPage extends StatelessWidget {
+  const BookPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Responsifcontroller responsifController = Get.find();
     final NewsController bookController = Get.find();
     final TaskController taskController = Get.find();
 
-    final NewsController book2Controller = Get.find();
-    final TaskController task2Controller = Get.find();
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        bool isTablet = constraints.maxWidth > 600;
+    responsifController.updateScreenWidth(MediaQuery.of(context).size.width);
 
-        return Scaffold(
-          body: SafeArea(
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                bool isTablet = constraints.maxWidth >
-                    600; // Define tablet size
-
-                return Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF8E8E8E),
-                  ),
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  child: ListView(
-                    padding: const EdgeInsets.all(10),
-                    children: [
-                      _buildHorizontalListView(book2Controller),
-                      const SizedBox(height: 20),
-                      // Responsive layout
-                      isTablet
-                          ? _buildTabletLayout(book2Controller, task2Controller)
-                          : _buildMobileLayout(
-                          book2Controller, task2Controller),
-                    ],
-                  ),
-                );
-              },
-            ),
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Color(0xFF8E8E8E),
           ),
-        );
-      }
-    );
-
-  }
-
-  Widget _buildTabletLayout(NewsController bookController, TaskController taskController) {
-    return Row(
-      children: [
-        Expanded(
-          child: _buildVerticalListView(bookController, taskController),
+          width: MediaQuery.of(context).size.width,
+          child: Obx(() {
+            return ListView(
+              padding: const EdgeInsets.all(10),
+              children: [
+                _buildHorizontalListView(bookController),
+                const SizedBox(height: 20),
+                _buildResponsiveLayout(
+                  responsifController,
+                  bookController,
+                  taskController,
+                ),
+              ],
+            );
+          }),
         ),
-        const SizedBox(width: 10), // Space between columns
-        Expanded(
-          child: _buildVerticalListView(bookController, taskController),
-        ),
-      ],
+      ),
     );
   }
 
-  Widget _buildMobileLayout(NewsController bookController, TaskController taskController) {
-    return Column(
-      children: [
-        _buildVerticalListView(bookController, taskController),
-        const SizedBox(height: 10),
-        _buildVerticalListView(bookController, taskController),
-      ],
-    );
+  Widget _buildResponsiveLayout(
+      Responsifcontroller responsifController,
+      NewsController bookController,
+      TaskController taskController,
+      ) {
+    if (responsifController.isDesktop() || responsifController.isTablet()) {
+      return Row(
+        children: [
+          Expanded(
+            child: _buildVerticalListView(bookController, taskController),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: _buildVerticalListView(bookController, taskController),
+          ),
+        ],
+      );
+    } else if (responsifController.isMobile()) {
+      return _buildVerticalListView(bookController, taskController);
+    }
+    return const SizedBox.shrink(); // Fallback for unsupported cases.
   }
-
   Widget _buildHorizontalListView(NewsController bookController) {
     return SizedBox(
       height: 200,
@@ -91,14 +76,13 @@ class Bookpage extends StatelessWidget {
         itemBuilder: (context, index) {
           final item = bookController.itemsmu[index];
           return GestureDetector(
-            onTap: (){
+            onTap: () {
               Get.to(() => DetailPage(
                 image: item.imageku,
                 title: item.title,
                 description: item.description,
                 valuemu: item.valuemu,
               ));
-
             },
             child: Container(
               width: 200,
@@ -179,7 +163,7 @@ class Bookpage extends StatelessWidget {
               imagemu: item.imageku ?? 'assets/placeholder.png',
               text1: item.title ?? "Untitled",
               text2: item.description ?? "No description available.",
-              icon: Icon(Icons.add),
+              icon: const Icon(Icons.add),
               onAddTask: () {
                 _addTask(taskController, item);
               },
@@ -189,7 +173,6 @@ class Bookpage extends StatelessWidget {
       ),
     );
   }
-
 
   void _addTask(TaskController taskController, dynamic item) {
     TaskModel task = TaskModel(
